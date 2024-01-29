@@ -1,0 +1,31 @@
+(defstruct ksiazka
+  tytul
+  autor
+  wydawnictwo
+  rok-wydania
+  isbn)
+
+(defvar *biblioteka* '())
+
+(defun dodaj-ksiazke (tytul autor wydawnictwo rok-wydania isbn)
+  (push (make-ksiazka :tytul tytul
+                      :autor autor
+                      :wydawnictwo wydawnictwo
+                      :rok-wydania rok-wydania
+                      :isbn isbn)
+        *biblioteka*))
+
+(defun usun-ksiazke (isbn)
+  (setf *biblioteka* (remove-if (lambda (ksiazka) (equal (ksiazka-isbn ksiazka) isbn))
+                                *biblioteka*)))
+
+(defun wyszukaj-ksiazki (kryterium-wyszukiwania wartosc)
+  (remove-if-not (lambda (ksiazka)
+                   (case kryterium-wyszukiwania
+                     (:tytul (equal (ksiazka-tytul ksiazka) wartosc))
+                     (:autor (equal (ksiazka-autor ksiazka) wartosc))
+                     (:wydawnictwo (equal (ksiazka-wydawnictwo ksiazka) wartosc))
+                     (:rok-wydania (= (ksiazka-rok-wydania ksiazka) wartosc))
+                     (:isbn (equal (ksiazka-isbn ksiazka) wartosc))))
+                *biblioteka*))
+

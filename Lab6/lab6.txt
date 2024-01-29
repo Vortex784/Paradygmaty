@@ -1,0 +1,16 @@
+(defun polacz-listy (lista1 lista2)
+  (append lista1 lista2))
+
+(defun odwroc-liste (lista)
+  (reverse lista))
+
+(defun palindrom-p (lista)
+  (equal lista (odwroc-liste lista)))
+
+(defun sortuj-liste (lista)
+  (sort lista #'<))
+
+(defun iloczyn-list (lista1 lista2)
+  (if (and (listp lista1) (listp lista2) (= (length lista1) (length lista2)))
+      (mapcar #'* lista1 lista2)
+      (error "Listy muszą być jednakowej długości")))

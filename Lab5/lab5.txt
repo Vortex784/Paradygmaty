@@ -1,0 +1,4 @@
+(+ 2 (/ (* 3 4) 8))
+(+ (sin 12) (cos (/ 256 32)))
+(defun suma (x y) (+ x y))
+(defun parzysta (x) (if (= (rem x 2) 0) (print 'true) (print 'false)))
